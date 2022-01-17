@@ -1,3 +1,4 @@
+"""
 # import the opencv library
 import cv2
 
@@ -23,3 +24,11 @@ while (True):
 vid.release()
 # Destroy all the windows
 cv2.destroyAllWindows()
+"""
+import numpy as np
+def Average(lst):
+    return sum(lst)/len(lst)
+
+array = np.array([[1,2,3],[3,3,3]])
+#[row,column]
+print(array[0,:])
