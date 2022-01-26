@@ -10,8 +10,8 @@ import os
 
 
 def main():
-    inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\editedimages"
-    outPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\segmented"
+    inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\editedimages\\DTOP"
+    outPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\segmented\\DTOP"
 
     for imagePath in os.listdir(inPath):
 
@@ -20,14 +20,14 @@ def main():
         #Read image, cvt from colored to gray, and perform blur
         src = cv2.imread(inputPath)
         img = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-        img_blur = median(img,disk(2))
+        img_blur = median(img,disk(1))
 
         #Perform Canny Edge detection
-        t = 35
+        t = 12
         detected_edges = cv2.Canny(img_blur,t,t*3,3)
 
         #Dilate the edges
-        kernel = np.ones((3,3),np.uint8)
+        kernel = np.ones((2,2),np.uint8)
         mask_dilate = cv2.dilate(detected_edges,kernel,iterations=1)
 
         #Create Mask
@@ -42,7 +42,7 @@ def main():
 
         fullOutPath = os.path.join(outPath, 'segmented_' + imagePath)
 
-        cv2.imwrite(fullOutPath, cv2.bitwise_and(result, img))\
+        cv2.imwrite(fullOutPath, cv2.bitwise_and(result, img))
 
 if __name__ == '__main__':
     main()

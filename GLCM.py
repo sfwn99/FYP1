@@ -10,12 +10,12 @@ import timeit
 def Average(lst):
     return sum(lst)/len(lst)
 
-image = io.imread('segmented/segmented_invert_1.png')
+image = io.imread('segmented/DTOP/segmented_invert_D-5T.jpg')
 
-nsize = (29,29)
+nsize = (55,85)
 #(y,x)
-y = 200
-x = 100
+y = 37
+x = 85
 region = image[y+2:y+nsize[0],x+1:x+nsize[1]]
 
 plt.figure()
@@ -34,13 +34,13 @@ ASM = []
 diss = []
 homogene=[]
 
-glcm = greycomatrix(region, distances=[10],angles=[0, np.pi/4, np.pi/2, 3*np.pi/4])
-corr.append(Average(greycoprops(glcm,'correlation')[0,:]))
-energy.append(Average(greycoprops(glcm,'energy')[0,:]))
-contrast.append(Average(greycoprops(glcm,'contrast')[0,:]))
-ASM.append(Average(greycoprops(glcm,'ASM')[0,:]))
-diss.append(Average(greycoprops(glcm,'dissimilarity')[0,:]))
-homogene.append(Average(greycoprops(glcm,'homogeneity')[0,:]))
+glcm = greycomatrix(region, distances=[1,3],angles=[0, np.pi/4, np.pi/2, 3*np.pi/4])
+corr.append(Average(Average(greycoprops(glcm,'correlation')[:,:])))
+energy.append(Average(Average(greycoprops(glcm,'energy')[:,:])))
+contrast.append(Average(Average(greycoprops(glcm,'contrast')[:,:])))
+ASM.append(Average(Average(greycoprops(glcm,'ASM')[:,:])))
+diss.append(Average(Average(greycoprops(glcm,'dissimilarity')[:,:])))
+homogene.append(Average(Average(greycoprops(glcm,'homogeneity')[:,:])))
 
 print('Correlation:',corr)
 print('Energy:',energy)
