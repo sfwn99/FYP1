@@ -1,9 +1,9 @@
 from PIL import Image
 import os
 
-inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\images\\ATOP"
+inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\testimages"
 outPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\editedimages"
-imagePath = "42.jpg"
+imagePath = "cleanyellow.jpg"
 # imagePath contains name of the image
 inputPath = os.path.join(inPath, imagePath)
 

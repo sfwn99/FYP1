@@ -1,3 +1,4 @@
+
 import cv2
 from skimage.filters import median
 from skimage.morphology import disk
@@ -10,19 +11,19 @@ import os
 
 
 
-inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\editedimages\\ATOP"
-outPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\segmented\\ATOP"
+inPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\images"
+outPath = "C:\\Users\\sfwn9\\PycharmProjects\\FYP1\\segmented"
 
-imagePath = 'invert_A-1T.jpg'
+imagePath = 'stenio3.jpeg'
 inputPath = os.path.join(inPath, imagePath)
 
 #Read image, cvt from colored to gray, and perform blur
 src = cv2.imread(inputPath)
 img = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-img_blur = median(img,disk(2))
+img_blur = median(img,disk(5))
 
 #Perform Canny Edge detection
-t = 6
+t = 21
 detected_edges = cv2.Canny(img_blur,t,t*3,3)
 
 #Dilate the edges
@@ -57,31 +58,3 @@ cv2.imshow("Eroded",mask_dilate)
 cv2.imshow("Segmented Mango",cv2.bitwise_and(result,img))
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
-
-
-"""
-medianimg = median (img,disk(1),mode='constant',cval=0.0)
-
-#Canny Edge Detection
-
-sigma = 1.0
-median = np.median(img)
-lower = int(max(0,(1.0-sigma)*median))
-upper = int(min(255,(1.0+sigma)*median))
-img_canny = cv2.Canny(img,lower,upper)
-
-#Fill the detected edge
-
-
-
-
-#cv2.imshow("Medianed",medianimg)
-cv2.imshow("AutoCanny",img_canny)
-cv2.imshow("Original",img)
-
-#cv2.imwrite("2.png",medianimg)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-
-"""
