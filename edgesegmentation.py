@@ -23,7 +23,7 @@ def main():
         img_blur = median(img,disk(1))
 
         #Perform Canny Edge detection
-        t = 12
+        t =
         detected_edges = cv2.Canny(img_blur,t,t*3,3)
 
         #Dilate the edges

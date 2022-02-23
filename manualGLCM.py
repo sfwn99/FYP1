@@ -8,7 +8,9 @@ import matplotlib.patches as patches
 def Average(lst):
     return sum(lst)/len(lst)
 
-image = io.imread('segmented/segmented_invert_cleanyellow.jpg')
+image = io.imread('editedimages\DTOP\invert_segmented_D-1T.jpg')
+
+image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
 nsize = (55,100)
 #(y,x)

@@ -29,7 +29,7 @@ grade = ["A","B","C","D"]
 for letter in range(4):
 
     filesnumber = 0
-    for path in pathlib.Path("segmented/{}TOP".format(grade[letter])).iterdir():
+    for path in pathlib.Path("editedimages/{}TOP".format(grade[letter])).iterdir():
         if path.is_file():
             filesnumber += 1
 
@@ -43,7 +43,8 @@ for letter in range(4):
     for imgnum in range(filesnumber):
 
         imgnum +=1
-        image = io.imread('segmented/{}TOP/segmented_invert_{}-{}T.jpg'.format(grade[letter],grade[letter],imgnum))
+        image = io.imread('editedimages/{}TOP/invert_segmented_{}-{}T.jpg'.format(grade[letter],grade[letter],imgnum))
+        image = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
         nsize = (71,115)
         #(y,x)
